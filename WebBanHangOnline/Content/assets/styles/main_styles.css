@@ -804,7 +804,7 @@ section
 	transform: translateY(-50%);
 	left: 15px;
 }
-	.logo_container a {
+/*	.logo_container a {
 		font-size: 35px;
 		color: #394f3d;
 		font-weight: 700;
@@ -812,7 +812,7 @@ section
 	}
 		.logo_container a span {
 			color: #5fa54f;
-		}
+		}*/
 
 /*********************************
 3.7 Main Slider
