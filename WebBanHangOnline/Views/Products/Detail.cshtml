@@ -5,7 +5,209 @@
     ViewBag.SeoKeyWord = Model.SeoKeywords ?? Model.Title;
 }
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/single_styles.css">
+@*<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">*@
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/single_responsive.css">
+<style>
+    .product_slider_container {
+        width: 100%;
+        height: 340px;
+        margin-top: 73px;
+    }
+    .product_slider {
+        overflow: visible !important;
+    }
+    .product_slider_item .product-item {
+        width: 100% !important;
+    }
+
+    .product_slider_item .product-item {
+        height: 340px;
+    }
+
+    .product-item {
+        width: 20%;
+        height: 380px;
+        cursor: pointer;
+    }
+    .product {
+        width: 100%;
+        height: 340px;
+        border-right: solid 1px #e9e9e9;
+    }
+    .product_image {
+        width: 100%;
+    }
+    .product_image {
+        width: 100%;
+    }
+    .product_bubble_right {
+        right: 15px;
+    }
+
+    .product_bubble_red {
+        background: #fe4c50;
+    }
+
+    .product_bubble {
+        position: absolute;
+        top: 15px;
+        width: 50px;
+        height: 22px;
+        border-radius: 3px;
+        text-transform: uppercase;
+    }
+        .product_bubble span {
+            font-size: 12px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+    .product_bubble_red::after {
+        border-color: transparent transparent transparent #fe4c50;
+    }
+
+    .product_bubble_right::after {
+        content: ' ';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 6px;
+        right: auto;
+        top: auto;
+        bottom: -6px;
+        border: 6px solid;
+    }
+    .product_info {
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .product_name {
+        margin-top: 27px;
+    }
+        .product_name a {
+            color: #1e1e27;
+            line-height: 20px;
+        }
+    .discount .product_info .product_price {
+        font-size: 14px;
+    }
+
+    .product_price {
+        font-size: 16px;
+        color: #fe4c50;
+        font-weight: 600;
+    }
+        .product_price span {
+            font-size: 12px;
+            margin-left: 10px;
+            color: #b5aec4;
+            text-decoration: line-through;
+        }
+    .add_to_cart_button {
+        width: 100%;
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+
+    .red_button {
+        display: -webkit-inline-box;
+        display: -moz-inline-box;
+        display: -ms-inline-flexbox;
+        display: -webkit-inline-flex;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        height: 40px;
+        background: #fe4c50;
+        border-radius: 3px;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    .add_to_cart_button a {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .red_button a {
+        display: block;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        line-height: 40px;
+        width: 100%;
+    }
+    .product-item::after {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -1px;
+        width: calc(100% + 1px);
+        height: 100%;
+        pointer-events: none;
+        content: '';
+        border: solid 2px rgba(235, 235, 235, 0);
+        border-radius: 3px;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    .product_slider_nav_left {
+        top: 50%;
+        left: 0;
+    }
+
+    .product_slider_nav {
+        position: absolute;
+        width: 30px;
+        height: 70px;
+        background: #d3d3d6;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+        z-index: 2;
+        cursor: pointer;
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transition: all 300ms ease;
+        -moz-transition: all 300ms ease;
+        -ms-transition: all 300ms ease;
+        -o-transition: all 300ms ease;
+        transition: all 300ms ease;
+    }
+
+
+    .product_slider_nav_right {
+        top: 50%;
+        right: 0;
+    }
+    .product_slider_nav i {
+        color: #FFFFFF;
+        font-size: 12px;
+    }
+    .fa-chevron-right:before {
+        content: "\f054";
+    }
+    .product_slider_container:hover .product_slider_nav {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
 @if (Model != null)
 {
 
@@ -83,7 +285,7 @@
                         <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                     </ul>
 
-                    <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
+                    <div class="quantity d-flex flex-column flex-wrap flex-sm-row align-items-sm-center">
                         <span>Số lượng:</span>
                         <div class="quantity_selector">
                             <span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
@@ -91,7 +293,6 @@
                             <span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
                         </div>
                         <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@Model.Id">Thêm vào giỏ hàng</a></div>
-                        <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
                     </div>
                 </div>
             </div>
@@ -146,6 +347,10 @@
 
                         </div>
                     </div>
+                    <br />
+                    <!--More Peoduct-->
+                    @Html.Action("Partial_ProductSales", "Products")
+                    @*@Html.Partial("Partial_ProductSales", new List<WebBanHangOnline.Models.EF.Product> { Model })*@
 
                 </div>
             </div>

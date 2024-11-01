@@ -636,7 +636,7 @@ section
 
 .hamburger_container
 {
-	display: none;
+	
 	margin-left: 40px;
 }
 .hamburger_container i
@@ -804,7 +804,7 @@ section
 	transform: translateY(-50%);
 	left: 15px;
 }
-/*	.logo_container a {
+	.logo_container a {
 		font-size: 35px;
 		color: #394f3d;
 		font-weight: 700;
@@ -812,20 +812,20 @@ section
 	}
 		.logo_container a span {
 			color: #5fa54f;
-		}*/
+		}
 
 /*********************************
 3.7 Main Slider
 *********************************/
 
-.main_slider
-{
+.main_slider {
 	width: 100%;
-	height: 700px;
+	height: 100% !important;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
 	margin-top: 150px;
+	min-height: 680px;
 }
 .main_slider_content
 {
@@ -953,13 +953,14 @@ section
 5.1 New Arrivals Sorting
 *********************************/
 
-.new_arrivals_sorting
-{
-	display: inline-block;
+/*.new_arrivals_sorting {
 	border-radius: 3px;
 	margin-top: 59px;
 	overflow: visible;
-}
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}*/
 .grid_sorting_button
 {
 	height: 40px;
@@ -1082,6 +1083,14 @@ section
 	margin-left: 10px;
 	color: #b5aec4;
 	text-decoration: line-through;
+}
+@media only screen and (max-width: 765px) {
+	.discount .product_info .product_price {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		align-items: center;
+	}
 }
 .product_bubble
 {

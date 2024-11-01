@@ -60,10 +60,9 @@
 
 @media only screen and (max-width: 1199px)
 {
-	.main_slider
-	{
-		min-height: 475px;
-		height: calc(100vw / 1.714);
+	.main_slider {
+		min-height: 475px !important;
+		height: calc(100vw / 1.714) !important;
 	}
 	.main_slider_content
 	{
@@ -327,9 +326,14 @@
 	.product
 	{
 		height: 305px;
+		padding: 10px;
 	}
-	.grid_sorting_button
-	{
+	.discount .product_info .product_price {
+		display: flex;
+		align-items: baseline;
+		flex-direction: column;
+	}
+	.grid_sorting_button {
 		font-size: 13px;
 		padding-left: 20px;
 		padding-right: 20px;
