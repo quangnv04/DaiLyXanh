@@ -13,9 +13,9 @@ namespace WebBanHangOnline.Controllers
     public class WishlistController : Controller
     {
         // GET: Wishlist
-        public ActionResult Index(int? page)
+      public ActionResult Index(int? page)
         {
-            var pageSize = 10;
+            var pageSize = 1;
             if (page == null)
             {
                 page = 1;
@@ -32,6 +32,7 @@ namespace WebBanHangOnline.Controllers
         [AllowAnonymous]
         public ActionResult PostWishlist(int ProductId)
         {
+            //Kiem tra dang nhap
             if (Request.IsAuthenticated == false)
             {
                 return Json(new { Success = false, Message = "Bạn chưa đăng nhập." });
@@ -49,7 +50,7 @@ namespace WebBanHangOnline.Controllers
             db.SaveChanges();
             return Json(new { Success = true });
         }
-
+        //Xoa sp yeu thich
         [HttpPost]
         [AllowAnonymous]
         public ActionResult PostDeleteWishlist(int ProductId)
