@@ -113,9 +113,9 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
             if (item != null)
             {
                 var checkImg = item.ProductImage.Where(x => x.ProductId == item.Id);
-                if (checkImg != null)
+                if (checkImg != null && checkImg.Any())
                 {
-                    foreach(var img in checkImg)
+                    foreach(var img in checkImg.ToList())
                     {
                         db.ProductImages.Remove(img);
                         db.SaveChanges();
@@ -170,6 +170,38 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
                 return Json(new { success = true, IsSale = item.IsSale });
             }
 
+            return Json(new { success = false });
+        }
+
+        [HttpPost]
+        public ActionResult DeleteAll(string ids)
+        {
+            if (!string.IsNullOrEmpty(ids))
+            {
+                var items = ids.Split(',');
+                if (items != null && items.Any())
+                {
+                    foreach (var item in items)
+                    {
+                        var obj = db.Products.Find(Convert.ToInt32(item));
+                        if (item != null)
+                        {
+                            var checkImg = obj.ProductImage.Where(x => x.ProductId == obj.Id);
+                            if (checkImg != null)
+                            {
+                                foreach (var img in checkImg.ToList())
+                                {
+                                    db.ProductImages.Remove(img);
+                                    db.SaveChanges();
+                                }
+                            }
+                            db.Products.Remove(obj);
+                            db.SaveChanges();
+                        }
+                    }
+                }
+                return Json(new { success = true });
+            }
             return Json(new { success = false });
         }
     }

@@ -221,6 +221,7 @@
     <Compile Include="Models\EF\ProductImage.cs" />
     <Compile Include="Models\EF\ReviewProduct.cs" />
     <Compile Include="Models\EF\SystemSetting.cs" />
+    <Compile Include="Models\EF\Wishlist.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
