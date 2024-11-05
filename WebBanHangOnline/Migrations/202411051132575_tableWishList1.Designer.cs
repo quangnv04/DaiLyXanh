@@ -7,13 +7,13 @@ namespace WebBanHangOnline.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class updatewishlist : IMigrationMetadata
+    public sealed partial class tableWishList1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updatewishlist));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(tableWishList1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202411050725333_updatewishlist"; }
+            get { return "202411051132575_tableWishList1"; }
         }
         
         string IMigrationMetadata.Source
