@@ -197,12 +197,12 @@ jQuery(document).ready(function($)
 					if (active) {
 						fav.removeClass('active');
 						active = false;
-						//DeleteWishlist(id);
+						DeleteWishlist(id);
 					}
 					else {
 						fav.addClass('active');
 						active = true;
-						//AddWishlist(id);
+						AddWishlist(id);
 					}
 				});
 			});
