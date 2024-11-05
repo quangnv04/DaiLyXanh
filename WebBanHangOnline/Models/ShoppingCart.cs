@@ -7,6 +7,9 @@ namespace WebBanHangOnline.Models
 {
     public class ShoppingCart
     {
+        [Key]
+        public int Id { get; set; }
+        public string UserId { get; set; }
         public List<ShoppingCartItem> Items { get; set; }
         public ShoppingCart()
         {
@@ -15,6 +18,7 @@ namespace WebBanHangOnline.Models
 
         public void AddToCart(ShoppingCartItem item,int Quantity)
         {
+            //Kiểm tra sản phẩm có trong list chưa
             var checkExits = Items.FirstOrDefault(x => x.ProductId == item.ProductId);
             if (checkExits != null)
             {
@@ -63,6 +67,8 @@ namespace WebBanHangOnline.Models
 
     public class ShoppingCartItem
     {
+        [Key]
+        public int Id { get; set; }    
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string Alias { get; set; }

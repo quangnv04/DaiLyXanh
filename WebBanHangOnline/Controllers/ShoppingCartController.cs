@@ -192,21 +192,34 @@ namespace WebBanHangOnline.Controllers
         [HttpPost]
         public ActionResult AddToCart(int id, int quantity)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                // Nếu chưa đăng nhập, trả về JSON để JavaScript chuyển hướng đến trang đăng nhập
+                return Json(new { Success = false, RedirectToLogin = true, LoginUrl = Url.Action("Login", "Account") });
+            }
+            //code:thông tin về kết quả của thao tác thêm vào giỏ hàng,
+            //bao gồm Success (thành công hay không), msg (thông báo), code (mã trạng thái),
+            //và Count (số lượng sản phẩm trong giỏ hàng).
             var code = new { Success = false, msg = "", code = -1, Count = 0 };
             var db = new ApplicationDbContext();
             var checkProduct = db.Products.FirstOrDefault(x => x.Id == id);
             if (checkProduct != null)
             {
+                //Kiểm tra giỏ hàng Session["Cart"].
+                //Nếu Session["Cart"] chưa có (người dùng chưa tạo giỏ hàng trước đó),
+                //tạo một giỏ hàng mới ShoppingCart.
                 ShoppingCart cart = (ShoppingCart)Session["Cart"];
                 if (cart == null)
                 {
                     cart = new ShoppingCart();
+                    Session["Cart"] = cart;
                 }
-                ShoppingCartItem item = new ShoppingCartItem
+                cart.UserId = User.Identity.GetUserId();
+                ShoppingCartItem item = new ShoppingCartItem //chứa thông tin sản phẩm
                 {
                     ProductId = checkProduct.Id,
                     ProductName = checkProduct.Title,
-                    CategoryName = checkProduct.ProductCategory.Title,
+                     CategoryName = checkProduct.ProductCategory.Title,
                     Alias = checkProduct.Alias,
                     Quantity = quantity
                 };
@@ -226,7 +239,6 @@ namespace WebBanHangOnline.Controllers
             }
             return Json(code);
         }
-
 
         [AllowAnonymous]
         [HttpPost]
