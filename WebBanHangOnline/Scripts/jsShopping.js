@@ -15,7 +15,11 @@
             type: 'POST',
             data: { id: id, quantity: quatity },
             success: function (rs) {
-                if (rs.Success) {
+                if (rs.RedirectToLogin) {
+                    // Chuyển hướng người dùng đến trang đăng nhập
+                    window.location.href = rs.LoginUrl;
+                }
+                else if (rs.Success) {
                     $('#checkout_items').html(rs.Count);
                     alert(rs.msg);
                 }
