@@ -193,7 +193,7 @@ jQuery(document).ready(function($)
 				}
 
 				fav.on('click', function () {
-					//var id = $(this).data('id');
+					var id = $(this).data('id');
 					if (active) {
 						fav.removeClass('active');
 						active = false;
@@ -203,10 +203,6 @@ jQuery(document).ready(function($)
 						fav.addClass('active');
 						active = true;
 						//AddWishlist(id);
-						var id = $(this).data('id');
-						alert(id);
-						debugger;
-
 					}
 				});
 			});

@@ -170,6 +170,7 @@ namespace WebBanHangOnline.Controllers
                         strSanPham += "</tr>";
                         thanhtien += sp.Price * sp.Quantity;
                     }
+                    TongTien = thanhtien;
                     string contentCustomer = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send2.html"));
                     contentCustomer = contentCustomer.Replace("{{MaDon}}", order.Code);
                     contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
@@ -180,7 +181,7 @@ namespace WebBanHangOnline.Controllers
                     contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", order.Address);
                     contentCustomer = contentCustomer.Replace("{{ThanhTien}}", WebBanHangOnline.Common.Common.FormatNumber(thanhtien, 0));
                     contentCustomer = contentCustomer.Replace("{{TongTien}}", WebBanHangOnline.Common.Common.FormatNumber(TongTien, 0));
-                    WebBanHangOnline.Common.Common.SendMail("ShopOnline", "Đơn hàng #" + order.Code, contentCustomer.ToString(), req.Email);
+                    WebBanHangOnline.Common.Common.SendMail("Đại Lý Xanh", "Đơn hàng #" + order.Code, contentCustomer.ToString(), req.Email);
 
                 }
             }
