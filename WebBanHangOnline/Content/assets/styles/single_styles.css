@@ -1113,7 +1113,6 @@ section
 .add_to_cart_button
 {
 	width: 160px;
-	margin-left: 19px;
 	font-size: 12px !important;
 }
 .product_favorite
@@ -1121,8 +1120,6 @@ section
 	width: 40px;
 	height: 100%;
 	margin-left: 22px;
-	border: solid 1px #e5e5e5;
-	border-radius: 2px;
 	cursor: pointer;
 }
 .product_favorite:hover::after

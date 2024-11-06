@@ -43,7 +43,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="top_nav_left">Hotline: @SettingHelper.GetValue("SettingHotline")</div>
+                            <div class="top_nav_left">Hotline: @SettingHelper.GetValue("SettingHotline")   /   Email: @SettingHelper.GetValue("SettingEmail")</div>
                         </div>
                         <div class="col-md-6 text-right">
                             <div class="top_nav_right">
@@ -68,7 +68,7 @@
                                             </a>
                                             <ul class="account_selection">
                                                 <li><a href="/account/profile"><i class="fa fa-sign-in" aria-hidden="true"></i>Thông tin cá nhân</a></li>
-                                                <li><a href="/wishlist/index"><i class="fa fa-sign-in" aria-hidden="true"></i>Sản phẩm yêu thích</a></li>
+                                                
                                                 <li><a href="javascript:document.getElementById('logOffForm').submit()"><i class="fa fa-user-plus" aria-hidden="true"></i> Đăng xuất</a></li>
                                             </ul>
                                         }
@@ -155,6 +155,7 @@
                     <li class="menu_item"><a href="/">Trang Chủ</a></li>
                     <li class="menu_item"><a href="san-pham">Sản Phẩm</a></li>
                     <li class="menu_item"><a href="tin-tuc">Tin Tức</a></li>
+                    <li class="menu_item"><a href="/wishlist/index">Sản phẩm yêu thích</a></li>
                     <li class="menu_item"><a href="lien-he">Liên Hệ</a></li>
 
                     <li class=" menu_item has-children">
@@ -171,7 +172,7 @@
                             <a href="#"> Welcome: @User.Identity.Name<i class="fa fa-angle-down"></i></a>
                             <ul class="menu_selection">
                                 <li><a href="/account/profile"><i aria-hidden="true"></i>Thông tin cá nhân</a></li>
-                                <li><a href="javascript:document.getElementById('logOffForm').submit()"><i  aria-hidden="true"></i> Đăng xuất</a></li>
+                                <li><a href="javascript:document.getElementById('logOffForm').submit()"><i aria-hidden="true"></i> Đăng xuất</a></li>
                             </ul>
                         }
 

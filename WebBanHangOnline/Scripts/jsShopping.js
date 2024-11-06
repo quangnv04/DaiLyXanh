@@ -8,7 +8,7 @@
         if (tQuantity != '') {
             quatity = parseInt(tQuantity);
         }
-        
+
         //alert(id + " " + quatity);
         $.ajax({
             url: '/shoppingcart/addtocart',

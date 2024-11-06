@@ -1,4 +1,4 @@
-/* JS Document */
+﻿/* JS Document */
 
 /******************************
 
@@ -51,7 +51,7 @@ jQuery(document).ready(function ($) {
     initFixProductBorder();
     initIsotopeFiltering();
     initSlider();
-
+    initDeleteWishlist();
     /* 
 
     2. Set Header
@@ -228,18 +228,44 @@ jQuery(document).ready(function ($) {
             });
         }
     }
+    function initDeleteWishlist() {
+        if ($('.btn-delete').length) {
+            var deleteButtons = $('.btn-delete');
+
+            deleteButtons.each(function () {
+                var deleteButton = $(this);
+
+                deleteButton.on('click', function (e) {
+                    e.preventDefault(); //Ngăn chặn hành vi mặc định của thẻ <a>
+                    var productId = $(this).data('id'); //Lấy ID của sản phẩm
+                    if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi danh sách yêu thích không?')) {
+                        //Gọi hàm xóa sản phẩm khỏi danh sách yêu thích
+                        DeleteWishlist(productId);
+                    }
+                });
+            });
+        }
+    }
+
+
     function DeleteWishlist(id) {
         $.ajax({
-            url: '/wishlist/PostDeleteWishlist',
+            url: '/wishlist/PostDeleteWishlist', // Đường dẫn xử lý xóa trên server
             type: 'POST',
-            data: { ProductId: id },
+            data: { ProductId: id }, // Dữ liệu gửi đi (ID của sản phẩm)
             success: function (res) {
-                if (res.Success == false) {
+                if (res.Success) {
+                    alert(res.Message); 
+                } else {
                     alert(res.Message);
                 }
+            },
+            error: function () {
+                alert("Có lỗi xảy ra khi xóa sản phẩm yêu thích.");
             }
         });
     }
+
     function AddWishlist(id) {
         $.ajax({
             url: '/wishlist/postwishlist',
@@ -248,10 +274,16 @@ jQuery(document).ready(function ($) {
             success: function (res) {
                 if (res.Success == false) {
                     alert(res.Message);
+                } else {
+                    // Thay vì tạo mới, chỉ cập nhật trạng thái
+                    let favoriteElement = $(`.favorite[data-id="${id}"]`);
+                    favoriteElement.addClass('active'); // Thêm lớp active
                 }
             }
         });
     }
+
+
     /* 
 
     6. Init Fix Product Border
