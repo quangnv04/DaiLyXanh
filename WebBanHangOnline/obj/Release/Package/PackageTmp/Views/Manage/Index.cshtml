@@ -1,0 +1,43 @@
+﻿@model WebBanHangOnline.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Thay đổi cài đặt tài khoản của bạn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Mật Khẩu:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+        <dt>Đăng nhập bên ngoài:</dt>
+        <dd>
+            @Model.Logins.Count [
+            @Html.ActionLink("Manage", "ManageLogins") ]
+        </dd>
+        <dt>Xác thực hai yếu tố:</dt>
+        <dd>
+            <div>
+                <img src="/Content/assets/images/logo.png" style="
+    width: 35em;
+    position: relative;
+    top: -10em;
+    right: 5em;
+">
+            </div>
+        </dd>
+    </dl>
+</div>
