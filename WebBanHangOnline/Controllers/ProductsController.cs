@@ -1,9 +1,11 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHangOnline.Models;
+using WebBanHangOnline.Models.EF;
 
 namespace WebBanHangOnline.Controllers
 {
@@ -11,11 +13,22 @@ namespace WebBanHangOnline.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(int ?page)
         {
-            var items = db.Products.ToList();
-            
-            return View(items);
+            var pageSize = 16;
+            if (page == null)
+            {
+                page = 1;
+            }
+
+            var items = db.Products.OrderByDescending(x => x.CreatedDate).ToList();
+            // Chuyển đổi thành IPagedList
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            var pagedItems = items.ToPagedList(pageIndex, pageSize);
+            // Gửi thông tin phân trang vào ViewBag
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
+            return View(pagedItems);  // Trả về danh sách đã phân trang
         }
 
         public ActionResult Detail(string alias,int id)
